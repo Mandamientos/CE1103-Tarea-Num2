@@ -1,0 +1,14 @@
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\bin\Debug\net8.0\CE1103-Tarea-Num2.exe
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\bin\Debug\net8.0\CE1103-Tarea-Num2.deps.json
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\bin\Debug\net8.0\CE1103-Tarea-Num2.runtimeconfig.json
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\bin\Debug\net8.0\CE1103-Tarea-Num2.dll
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\bin\Debug\net8.0\CE1103-Tarea-Num2.pdb
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.AssemblyInfo.cs
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.dll
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\refint\CE1103-Tarea-Num2.dll
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.pdb
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\CE1103-Tarea-Num2.genruntimeconfig.cache
+C:\Users\User\Desktop\CE1103-Tarea-Num2\CE1103-Tarea-Num2\CE1103-Tarea-Num2\obj\Debug\net8.0\ref\CE1103-Tarea-Num2.dll
