@@ -1,25 +1,34 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-using System.Numerics;
+﻿using System.Collections.Generic;
+
+public interface IList
+{
+    void InsertInOrder(int value);
+    int DeleteFirst();
+    int DeleteLast();
+    bool DeleteValue(int value);
+    int GetMiddle();
+    void MergeSorted(IList listA, IList listB, Program.sortDirection direction);
+}
 
 public class node
 {
     public node nextNode;
     public node prevNode;
+    public node middleNode;
     public int element;
 
     public node(int element)
     {
         nextNode = null;
         prevNode = null;
+        middleNode = null;
         this.element = element;
     }
 }
 
-public class doublyLinkedList
+public class doublyLinkedList : IList
 {
     public node head;
-    public node tail;
     public int size;
 
     public doublyLinkedList()
@@ -46,22 +55,32 @@ public class doublyLinkedList
             newNode.prevNode = marker;
         }
         size++;
+        refreshMiddleNode();
     }
 
-    public void remove(int index)
+    public int remove(int index)
     {
+        int element;
         if (head == null)
         {
-            return;
+            return -1;
         }
         else if (size == 1 && index == 0)
         {
+            element = head.element;
             head = null;
+            --size;
+            refreshMiddleNode();
+            return element;
         }
         else if (index == 0)
         {
+            element = head.element;
             head.nextNode.prevNode = null;
             head = head.nextNode;
+            --size;
+            refreshMiddleNode();
+            return element;
         }
         else
         {
@@ -70,6 +89,8 @@ public class doublyLinkedList
             {
                 marker = marker.nextNode;
             }
+
+            element = marker.element;
             marker.prevNode.nextNode = marker.nextNode;
             if (marker.nextNode == null)
             {
@@ -80,7 +101,150 @@ public class doublyLinkedList
                 marker.nextNode.prevNode = marker.prevNode;
             }
         }
+        refreshMiddleNode();
         --size;
+        return element;
+    }
+
+    public int DeleteLast ()
+    {
+        int element = remove(size - 1);
+        return element;
+    }
+
+    public int DeleteFirst ()
+    {
+        int element = remove(0);
+        return element;
+    }
+
+    public bool DeleteValue (int value)
+    {
+        if (head == null)
+        {
+            return false;
+        } else if (head.element == value && head.nextNode == null)
+        {
+            head = null;
+            --size;
+            refreshMiddleNode();
+            return true;
+        } else
+        {
+            node marker = head;
+            while (marker.element != value)
+            {
+                if (marker.element != null)
+                {
+                    marker = marker.nextNode;
+                } else
+                {
+                    return false;
+                }
+            }
+
+            marker.prevNode.nextNode = marker.nextNode;
+            if (marker.nextNode == null)
+            {
+                marker.prevNode.nextNode = null;
+            }
+            else
+            {
+                marker.nextNode.prevNode = marker.prevNode;
+            }
+            --size;
+            refreshMiddleNode();
+            return true;
+        }
+    }
+
+    public void InsertInOrder (int value)
+    {
+        node newNode = new node(value);
+        if (head == null)
+        {
+            return;
+        }
+        else if (head.element > newNode.element)
+        {
+            head.prevNode = newNode;
+            newNode.nextNode = head;
+            head = newNode;
+            ++size;
+        }
+        else
+        {
+            node current = head;
+            while (current != null && current.element < newNode.element)
+            {
+                current = current.nextNode;
+            }
+            if (current == null)
+            {
+                this.add(value);
+                return;
+            }
+            else
+            {
+                newNode.prevNode = current.prevNode;
+                current.prevNode.nextNode = newNode;
+                newNode.nextNode = current;
+                current.prevNode = newNode;
+                ++size;
+            }
+        }
+        refreshMiddleNode();
+    }
+
+    public void refreshMiddleNode ()
+    {
+        node middleMarker = head;
+        if (size % 2 != 0)
+        {
+            int middleIndex = size / 2;
+            node middleNode;
+
+            for (int i = 0; i < middleIndex; i++)
+            {
+                middleMarker = middleMarker.nextNode;
+            }
+
+            middleNode = middleMarker;
+            middleMarker = head;
+            while (middleMarker != null)
+            {
+                middleMarker.middleNode = middleNode;
+                middleMarker = middleMarker.nextNode;
+            }
+        }
+        else
+        {
+            int middleIndex = (size / 2);
+            node middleNode;
+
+            for (int i = 0; i < middleIndex; i++)
+            {
+                middleMarker = middleMarker.nextNode;
+            }
+
+            middleNode = middleMarker;
+            middleMarker = head;
+            while (middleMarker != null)
+            {
+                middleMarker.middleNode = middleNode;
+                middleMarker = middleMarker.nextNode;
+            }
+        }
+    }
+
+    public int GetMiddle()
+    {
+        return head.middleNode.element;
+    }
+
+    public void MergeSorted(IList listA, IList listB, Program.sortDirection sortDirection)
+    {
+        Program.mergeSorted((doublyLinkedList)listA, (doublyLinkedList)listB, sortDirection);
     }
 
     public void showList()
@@ -95,27 +259,15 @@ public class doublyLinkedList
     }
 }
 
-public class Problema1
+public class Program
 {
     public enum sortDirection { Asc, Desc }
+
     public static void Main(string[] args)
     {
-        doublyLinkedList listA = new doublyLinkedList();
-        //  listA.add(10);
-        //  listA.add(20);
-        //  listA.add(30);
-
-        doublyLinkedList listB = new doublyLinkedList();
-        listB.add(5);
-        listB.add(15);
-        listB.add(25);
-
-        mergeSorted(listA, listB, sortDirection.Asc);
-        listA.showList();
-
     }
 
-    public static doublyLinkedList mergeSorted(doublyLinkedList listA, doublyLinkedList listB, sortDirection direction)
+    public static void mergeSorted(doublyLinkedList listA, doublyLinkedList listB, sortDirection direction)
     {
         if (listA == null || listB == null)
         {
@@ -158,7 +310,6 @@ public class Problema1
 
                         markerB = markerB.nextNode;
                     }
-                    return listA;
                 }
             }
             else
@@ -214,8 +365,49 @@ public class Problema1
 
                     markerB = markerB.nextNode;
                 }
-                return listA;
             }
         }
     }
+
+    public static void invert(doublyLinkedList list)
+    {
+        if (list == null)
+        {
+            throw new Exception("That list is null.");
+            return;
+        }
+        node tempMarker = list.head;
+        node tempNodeSave = null;
+
+        while (tempMarker != null)
+        {
+            tempNodeSave = tempMarker.nextNode;
+            tempMarker.nextNode = tempMarker.prevNode;
+            tempMarker.prevNode = tempNodeSave;
+            if (tempNodeSave != null)
+            {
+                tempMarker = tempNodeSave;
+            }
+            else
+            {
+                list.head = tempMarker;
+                tempMarker = tempNodeSave;
+            }
+        }
+    }
+
+    public static int getMiddleElement(doublyLinkedList list)
+    {
+        if (list == null)
+        {
+            throw new Exception("The list is null.");
+        } else if (list.head == null)
+        {
+            throw new Exception("The list is empty.");
+        } else
+        {
+            return list.GetMiddle();
+        }
+    }
+
 }

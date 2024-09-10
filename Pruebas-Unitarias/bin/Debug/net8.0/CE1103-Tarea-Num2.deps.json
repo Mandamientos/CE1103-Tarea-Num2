@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CE1103-Tarea-Num2/1.0.0": {
+        "runtime": {
+          "CE1103-Tarea-Num2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CE1103-Tarea-Num2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
